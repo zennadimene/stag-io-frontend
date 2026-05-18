@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import API_URL from '../config/api';
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -57,8 +58,7 @@ function LoginPage() {
     setLoading(true);
     try {
       //const response = await axios.post("http://localhost:5000/api/auth/login", {
-      // ✅ بعد التعديل
-      const response = await axios.post("https://stag-io-backend.onrender.com/api/auth/login", {
+        const response = await axios.post(`${API_URL}/auth/login`, { 
         email: formData.email,
         password: formData.password
       });

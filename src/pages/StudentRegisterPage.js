@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import API_URL from '../config/api';
 
 export default function StudentRegisterPage() {
   const navigate = useNavigate();
@@ -261,8 +262,8 @@ const handleSubmit = async (e) => {
   };
   
   try {
-    const response = await axios.post("http://localhost:5000/api/auth/register/student", studentData);
-    
+    //const response = await axios.post("http://localhost:5000/api/auth/register/student", studentData);
+    const response = await axios.post(`${API_URL}/auth/register/student`, studentData);
     if (response.data.success) {
       // ✅ إغلاق رسالة التحميل
       toast.dismiss(loadingToast);

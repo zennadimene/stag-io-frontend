@@ -5,6 +5,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { CheckCircle, XCircle, Loader2 } from "lucide-react";
+import API_URL from '../config/api';
 
 export default function VerifyEmail() {
   const { token } = useParams();
@@ -15,8 +16,8 @@ export default function VerifyEmail() {
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/auth/verify-email/${token}`);
-        
+        //const response = await axios.get(`http://localhost:5000/api/auth/verify-email/${token}`);
+        const response = await axios.get(`${API_URL}/auth/verify-email/${token}`);
         if (response.data.success) {
           setStatus("success");
           setMessage(response.data.message || "Email verified successfully!");

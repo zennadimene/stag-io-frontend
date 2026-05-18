@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // أو fetch
 
+
 const Preferences = () => {
     const [selectedLocations, setSelectedLocations] = useState([]);
     const [selectedTypes, setSelectedTypes] = useState([]);
