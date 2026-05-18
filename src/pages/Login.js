@@ -31,7 +31,8 @@ export default function Login() {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      //const res = await axios.post("http://localhost:5000/api/auth/login", {
+      const response = await axios.post('https://stag-io-backend.onrender.com/api/auth/login', {
         email: form.email,
         password: form.password,
         role: form.role
