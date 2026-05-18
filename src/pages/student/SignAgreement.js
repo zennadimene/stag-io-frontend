@@ -27,7 +27,7 @@ const SignAgreement = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        `http://localhost:5000/api/student/agreements/${agreementId}`,
+        `http://stag-io-backend.onrender.com/api/student/agreements/${agreementId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
@@ -99,7 +99,7 @@ const handleSignAgreement = async () => {
     const token = localStorage.getItem('token');
     
     const response = await axios.put(
-      `http://localhost:5000/api/student/agreements/${agreementId}/sign`,
+      `http://stag-io-backend.onrender.com/api/student/agreements/${agreementId}/sign`,
       { 
         signature: signature,
         signature_type: signatureType,
@@ -114,7 +114,7 @@ const handleSignAgreement = async () => {
       
       // ✅ جلب البيانات المحدثة للاتفاقية
       const updatedResponse = await axios.get(
-        `http://localhost:5000/api/student/agreements/${agreementId}`,
+        `http://stag-io-backend.onrender.com/api/student/agreements/${agreementId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
@@ -127,7 +127,7 @@ const handleSignAgreement = async () => {
         
         // ✅ تحديث الحالة إلى completed
         await axios.put(
-          `http://localhost:5000/api/agreements/${agreementId}/complete`,
+          `http://stag-io-backend.onrender.com/api/agreements/${agreementId}/complete`,
           {},
           { headers: { Authorization: `Bearer ${token}` } }
         );

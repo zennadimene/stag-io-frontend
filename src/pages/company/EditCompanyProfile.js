@@ -109,7 +109,7 @@ const EditCompanyProfile = () => {
   const fetchCompanyProfile = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/company/profile', {
+      const response = await axios.get('http://stag-io-backend.onrender.com/api/company/profile', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -160,10 +160,10 @@ const EditCompanyProfile = () => {
         });
 
         if (profileData.logo_url) {
-          setLogoPreview(`http://localhost:5000${profileData.logo_url}`);
+          setLogoPreview(`http://stag-io-backend.onrender.com${profileData.logo_url}`);
         }
         if (profileData.cover_image_url) {
-          setCoverPreview(`http://localhost:5000${profileData.cover_image_url}`);
+          setCoverPreview(`http://stag-io-backend.onrender.com${profileData.cover_image_url}`);
         }
       }
     } catch (error) {
@@ -322,7 +322,7 @@ const handleSubmit = async (e) => {
     }
 
     const response = await axios.put(
-      'http://localhost:5000/api/company/profile',
+      'http://stag-io-backend.onrender.com/api/company/profile',
       formDataToSend,
       {
         headers: { 

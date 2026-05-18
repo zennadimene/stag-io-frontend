@@ -81,7 +81,7 @@ const CompanyInternshipApplications = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        `http://localhost:5000/api/company/internships/${internshipId}`,
+        `http://stag-io-backend.onrender.com/api/company/internships/${internshipId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
@@ -103,7 +103,7 @@ const CompanyInternshipApplications = () => {
       console.log('🔍 Fetching applications for internship:', internshipId);
       
       const response = await axios.get(
-        `http://localhost:5000/api/company/applications?internship_id=${internshipId}`,
+        `http://stag-io-backend.onrender.com/api/company/applications?internship_id=${internshipId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
@@ -170,7 +170,7 @@ const CompanyInternshipApplications = () => {
       }
       
       const response = await axios.put(
-        `http://localhost:5000/api/company/applications/${applicationId}/status`,
+        `http://stag-io-backend.onrender.com/api/company/applications/${applicationId}/status`,
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -208,7 +208,7 @@ const CompanyInternshipApplications = () => {
         
         try {
           await axios.post(
-            'http://localhost:5000/api/notifications/send',
+            'http://stag-io-backend.onrender.com/api/notifications/send',
             {
               user_type: 'admin',
               type: 'company_accept',

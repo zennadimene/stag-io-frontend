@@ -184,7 +184,7 @@ const fetchSettings = async () => {
   try {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');
     
-    const response = await axios.get('http://localhost:5000/api/student/settings', {
+    const response = await axios.get('http://stag-io-backend.onrender.com/api/student/settings', {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -246,7 +246,7 @@ const handleSaveSettings = async () => {
     console.log('📤 Sending to server:', JSON.stringify(settingsData, null, 2));
     
     const response = await axios.put(
-      'http://localhost:5000/api/student/settings',
+      'http://stag-io-backend.onrender.com/api/student/settings',
       settingsData,
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -309,7 +309,7 @@ const handleSaveSettings = async () => {
       const token = localStorage.getItem('token') || sessionStorage.getItem('token');
       
       const response = await axios.put(
-        'http://localhost:5000/api/student/change-password',
+        'http://stag-io-backend.onrender.com/api/student/change-password',
         {
           currentPassword: passwordData.currentPassword,
           newPassword: passwordData.newPassword
@@ -436,7 +436,7 @@ const handleDeleteAccount = async () => {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');
     
     const response = await axios.delete(
-      'http://localhost:5000/api/student/account',
+      'http://stag-io-backend.onrender.com/api/student/account',
       {
         data: { password },
         headers: { Authorization: `Bearer ${token}` }

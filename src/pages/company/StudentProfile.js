@@ -29,7 +29,7 @@ const StudentProfile = () => {
       const token = localStorage.getItem('token');
       
       const response = await axios.get(
-        `http://localhost:5000/api/company/student/${studentId}`,
+        `http://stag-io-backend.onrender.com/api/company/student/${studentId}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -142,7 +142,7 @@ const StudentProfile = () => {
             <div className="absolute inset-0 bg-black/20"></div>
             {student.cover_image_url && (
               <img 
-                src={`http://localhost:5000${student.cover_image_url}`}
+                src={`http://stag-io-backend.onrender.com${student.cover_image_url}`}
                 alt="Cover"
                 className="w-full h-full object-cover opacity-60"
               />
@@ -162,7 +162,7 @@ const StudentProfile = () => {
                 <div className="w-36 h-36 rounded-2xl overflow-hidden border-4 border-white shadow-2xl bg-white transform transition-transform group-hover:scale-105 duration-300">
                   {student.profile_image_url ? (
                     <img 
-                      src={`http://localhost:5000${student.profile_image_url}`}
+                      src={`http://stag-io-backend.onrender.com${student.profile_image_url}`}
                       alt={`${student.first_name} ${student.last_name}`}
                       className="w-full h-full object-cover"
                     />

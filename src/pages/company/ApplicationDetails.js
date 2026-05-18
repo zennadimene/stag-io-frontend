@@ -43,7 +43,7 @@ const ApplicationDetails = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        `http://localhost:5000/api/company/applications/${id}`,
+        `http://stag-io-backend.onrender.com/api/company/applications/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
@@ -81,7 +81,7 @@ const ApplicationDetails = () => {
       }
       
       const response = await axios.put(
-        `http://localhost:5000/api/company/applications/${id}/status`,
+        `http://stag-io-backend.onrender.com/api/company/applications/${id}/status`,
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );

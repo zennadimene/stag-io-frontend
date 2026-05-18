@@ -48,7 +48,7 @@ const fetchData = async () => {
     
     // جلب بيانات الشركة
     const companyRes = await axios.get(
-      `http://localhost:5000/api/company/profile/${companyId}`,
+      `http://stag-io-backend.onrender.com/api/company/profile/${companyId}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     
@@ -56,7 +56,7 @@ const fetchData = async () => {
     
     // جلب بيانات التدريب
     const internshipRes = await axios.get(
-      `http://localhost:5000/api/internships/${internshipId}`,
+      `http://stag-io-backend.onrender.com/api/internships/${internshipId}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     
@@ -94,7 +94,7 @@ const fetchData = async () => {
       const token = localStorage.getItem('token');
       
       const response = await axios.post(
-        'http://localhost:5000/api/student/rate-company',
+        'http://stag-io-backend.onrender.com/api/student/rate-company',
         {
           company_id: parseInt(companyId),
           internship_id: parseInt(internshipId),

@@ -27,7 +27,7 @@ const AdminSignAgreement = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        `http://localhost:5000/api/admin/agreements/${agreementId}`,
+        `http://stag-io-backend.onrender.com/api/admin/agreements/${agreementId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
@@ -99,7 +99,7 @@ const AdminSignAgreement = () => {
       const token = localStorage.getItem('token');
       
       const response = await axios.put(
-        `http://localhost:5000/api/admin/agreements/${agreementId}/sign`,
+        `http://stag-io-backend.onrender.com/api/admin/agreements/${agreementId}/sign`,
         { 
           signature: signature,
           signature_type: signatureType,

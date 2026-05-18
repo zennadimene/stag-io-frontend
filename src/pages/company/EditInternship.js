@@ -74,7 +74,7 @@ const EditInternship = () => {
   const fetchInternship = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5000/api/company/internships/${id}`, {
+      const response = await axios.get(`http://stag-io-backend.onrender.com/api/company/internships/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -137,7 +137,7 @@ const EditInternship = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.put(
-        `http://localhost:5000/api/company/internships/${id}`,
+        `http://stag-io-backend.onrender.com/api/company/internships/${id}`,
         {
           ...formData,
           required_skills: formData.required_skills,

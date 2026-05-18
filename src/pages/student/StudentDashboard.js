@@ -119,7 +119,7 @@ const StudentDashboard = () => {
    const fetchDashboardStats = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/student/stats', {
+      const response = await axios.get('http://stag-io-backend.onrender.com/api/student/stats', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -135,7 +135,7 @@ const StudentDashboard = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:5000/api/student/notifications/${notificationId}/read`,
+        `http://stag-io-backend.onrender.com/api/student/notifications/${notificationId}/read`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -150,7 +150,7 @@ const StudentDashboard = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        `http://localhost:5000/api/student/internships/${internshipId}/agreement`,
+        `http://stag-io-backend.onrender.com/api/student/internships/${internshipId}/agreement`,
         {
           headers: { Authorization: `Bearer ${token}` },
           responseType: 'blob'
@@ -207,7 +207,7 @@ const StudentDashboard = () => {
  const fetchStudentProfile = async () => {
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.get('http://localhost:5000/api/auth/me', {
+    const response = await axios.get('http://stag-io-backend.onrender.com/api/auth/me', {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -290,7 +290,7 @@ const StudentDashboard = () => {
   const fetchUpcomingDeadlines = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/student/deadlines', {
+      const response = await axios.get('http://stag-io-backend.onrender.com/api/student/deadlines', {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (response.data.success) {
@@ -305,7 +305,7 @@ const StudentDashboard = () => {
   const fetchNotifications = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/student/notifications', {
+      const response = await axios.get('http://stag-io-backend.onrender.com/api/student/notifications', {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (response.data.success) {
@@ -320,17 +320,17 @@ const StudentDashboard = () => {
   const fetchRecentActivities = async () => {
     try {
       const token = localStorage.getItem('token');
-      const applicationsRes = await axios.get('http://localhost:5000/api/student/applications', {
+      const applicationsRes = await axios.get('http://stag-io-backend.onrender.com/api/student/applications', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
       if (applicationsRes.data.success) {
         const apps = applicationsRes.data.applications;
-        const notificationsRes = await axios.get('http://localhost:5000/api/student/notifications', {
+        const notificationsRes = await axios.get('http://stag-io-backend.onrender.com/api/student/notifications', {
           headers: { Authorization: `Bearer ${token}` }
         });
         const notifications = notificationsRes.data.success ? notificationsRes.data.notifications : [];
-        const agreementsRes = await axios.get('http://localhost:5000/api/student/agreements', {
+        const agreementsRes = await axios.get('http://stag-io-backend.onrender.com/api/student/agreements', {
           headers: { Authorization: `Bearer ${token}` }
         });
         const agreements = agreementsRes.data.success ? agreementsRes.data.agreements : [];
@@ -401,7 +401,7 @@ const StudentDashboard = () => {
   const fetchSavedInternships = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/student/saved-internships', {
+      const response = await fetch('http://stag-io-backend.onrender.com/api/student/saved-internships', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
@@ -419,7 +419,7 @@ const StudentDashboard = () => {
       const token = localStorage.getItem('token');
       const method = savedIds.includes(internshipId) ? 'DELETE' : 'POST';
       
-      await fetch(`http://localhost:5000/api/student/saved-internships/${internshipId}`, {
+      await fetch(`http://stag-io-backend.onrender.com/api/student/saved-internships/${internshipId}`, {
         method,
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -440,7 +440,7 @@ const StudentDashboard = () => {
   const fetchRealStats = async () => {
     try {
       const token = localStorage.getItem('token');
-      const applicationsRes = await axios.get('http://localhost:5000/api/student/applications', {
+      const applicationsRes = await axios.get('http://stag-io-backend.onrender.com/api/student/applications', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -456,7 +456,7 @@ const StudentDashboard = () => {
         
         let savedInternships = 0;
         try {
-          const savedRes = await axios.get('http://localhost:5000/api/student/saved-internships', {
+          const savedRes = await axios.get('http://stag-io-backend.onrender.com/api/student/saved-internships', {
             headers: { Authorization: `Bearer ${token}` }
           });
           if (savedRes.data.success) savedInternships = savedRes.data.savedInternships?.length || 0;
@@ -798,7 +798,7 @@ return (
                 <p className="text-xs text-gray-500">Student</p>
               </div>
               <div className="relative group">
-                <img src={profile?.profile_image_url ? `http://localhost:5000${profile.profile_image_url}?t=${Date.now()}` : `https://ui-avatars.com/api/?name=${profile?.first_name}+${profile?.last_name}&background=6366f1&color=fff&size=40&rounded=true`} alt="Profile" className="w-10 h-10 rounded-full object-cover ring-2 ring-indigo-500/20 group-hover:ring-4 transition-all duration-300" />
+                <img src={profile?.profile_image_url ? `http://stag-io-backend.onrender.com${profile.profile_image_url}?t=${Date.now()}` : `https://ui-avatars.com/api/?name=${profile?.first_name}+${profile?.last_name}&background=6366f1&color=fff&size=40&rounded=true`} alt="Profile" className="w-10 h-10 rounded-full object-cover ring-2 ring-indigo-500/20 group-hover:ring-4 transition-all duration-300" />
                 <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-green-500 rounded-full ring-2 ring-white"></div>
               </div>
             </div>
@@ -899,7 +899,7 @@ return (
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
         <div className="flex flex-col md:flex-row gap-6">
           <div className="flex-shrink-0">
-            <img src={profile?.profile_image_url ? `http://localhost:5000${profile.profile_image_url}?t=${Date.now()}` : `https://ui-avatars.com/api/?name=${profile?.first_name}+${profile?.last_name}&background=6366f1&color=fff&size=100&rounded=true`} alt="Profile" className="w-24 h-24 rounded-xl object-cover ring-4 ring-indigo-100" />
+            <img src={profile?.profile_image_url ? `http://stag-io-backend.onrender.com${profile.profile_image_url}?t=${Date.now()}` : `https://ui-avatars.com/api/?name=${profile?.first_name}+${profile?.last_name}&background=6366f1&color=fff&size=100&rounded=true`} alt="Profile" className="w-24 h-24 rounded-xl object-cover ring-4 ring-indigo-100" />
           </div>
           <div className="flex-1">
             <div className="flex flex-wrap justify-between items-start gap-4">

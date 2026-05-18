@@ -20,17 +20,17 @@ const CompanyActivity = () => {
       setLoading(true);
       const token = localStorage.getItem('token');
       
-      const applicationsRes = await axios.get('http://localhost:5000/api/company/applications', {
+      const applicationsRes = await axios.get('http://stag-io-backend.onrender.com/api/company/applications', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
-      const internshipsRes = await axios.get('http://localhost:5000/api/company/internships', {
+      const internshipsRes = await axios.get('http://stag-io-backend.onrender.com/api/company/internships', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
       let agreements = [];
       try {
-        const agreementsRes = await axios.get('http://localhost:5000/api/company/agreements', {
+        const agreementsRes = await axios.get('http://stag-io-backend.onrender.com/api/company/agreements', {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (agreementsRes.data.success) {

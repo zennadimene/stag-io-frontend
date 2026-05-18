@@ -26,7 +26,7 @@ export default function AdminAccess() {
 
     try {
       // إرسال بدون role - Backend سيتعرف على Admin تلقائياً
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      const res = await axios.post("http://stag-io-backend.onrender.com/api/auth/login", {
         email: form.email,
         password: form.password
       });

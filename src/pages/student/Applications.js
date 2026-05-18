@@ -29,7 +29,7 @@ const Applications = () => {
  const fetchApplications = async () => {
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.get('http://localhost:5000/api/student/applications', {
+    const response = await axios.get('http://stag-io-backend.onrender.com/api/student/applications', {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -55,7 +55,7 @@ const Applications = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.delete(
-        `http://localhost:5000/api/student/applications/${applicationId}`,
+        `http://stag-io-backend.onrender.com/api/student/applications/${applicationId}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -80,7 +80,7 @@ const Applications = () => {
       setAcceptingOffer(applicationId);
       const token = localStorage.getItem('token');
       const response = await axios.put(
-        `http://localhost:5000/api/student/applications/${applicationId}/accept`,
+        `http://stag-io-backend.onrender.com/api/student/applications/${applicationId}/accept`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -107,7 +107,7 @@ const Applications = () => {
       console.log('📥 Downloading agreement:', agreementId);
       
       const response = await axios.get(
-        `http://localhost:5000/api/student/agreements/${agreementId}/download`,
+        `http://stag-io-backend.onrender.com/api/student/agreements/${agreementId}/download`,
         {
           headers: { Authorization: `Bearer ${token}` },
           responseType: 'blob'

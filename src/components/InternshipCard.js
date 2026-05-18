@@ -10,7 +10,7 @@ const InternshipCard = ({ internship }) => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/student/applications', {
+      const response = await fetch('http://stag-io-backend.onrender.com/api/student/applications', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

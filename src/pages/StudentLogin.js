@@ -13,7 +13,8 @@ export default function StudentLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      //const res = await axios.post("http://localhost:5000/api/auth/login", {
+      const res = await axios.post("https://stag-io-backend.onrender.com/api/auth/login", {
         ...form,
         role: "student" // تأكد من إرسال role كـ student
       });

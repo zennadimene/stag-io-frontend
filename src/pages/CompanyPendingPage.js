@@ -32,7 +32,8 @@ export default function CompanyPendingPage() {
     setChecking(true);
     
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/check-company-status", {
+      //const response = await axios.post("http://localhost:5000/api/auth/check-company-status", {
+      const response = await axios.post("http://stag-io-backend.onrender.com/api/auth/check-company-status", {
         email: companyEmail
       });
       

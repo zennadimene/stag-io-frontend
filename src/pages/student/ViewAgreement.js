@@ -35,9 +35,9 @@ const ViewAgreement = () => {
       
       let url = '';
       if (user.user_type === 'student') {
-        url = `http://localhost:5000/api/student/agreements/${agreementId}`;
+        url = `http://stag-io-backend.onrender.com/api/student/agreements/${agreementId}`;
       } else if (user.user_type === 'company') {
-        url = `http://localhost:5000/api/company/agreements/${agreementId}`;
+        url = `http://stag-io-backend.onrender.com/api/company/agreements/${agreementId}`;
       } else {
         toast.error('Invalid user type');
         setLoading(false);
@@ -66,9 +66,9 @@ const ViewAgreement = () => {
       
       let url = '';
       if (user.user_type === 'student') {
-        url = `http://localhost:5000/api/student/agreements/${agreementId}/download`;
+        url = `http://stag-io-backend.onrender.com/api/student/agreements/${agreementId}/download`;
       } else if (user.user_type === 'company') {
-        url = `http://localhost:5000/api/company/agreements/${agreementId}/download`;
+        url = `http://stag-io-backend.onrender.com/api/company/agreements/${agreementId}/download`;
       } else {
         toast.error('Invalid user type');
         return;
@@ -215,7 +215,7 @@ const ViewAgreement = () => {
                   {agreement.student_signed && agreement.signature_url ? (
                     <>
                       <img 
-                        src={`http://localhost:5000${agreement.signature_url}`} 
+                        src={`http://stag-io-backend.onrender.com${agreement.signature_url}`} 
                         alt="Student Signature"
                         className="max-h-20 object-contain border rounded bg-white p-2"
                       />
@@ -236,7 +236,7 @@ const ViewAgreement = () => {
                   {agreement.company_signed && agreement.company_signature_url ? (
                     <>
                       <img 
-                        src={`http://localhost:5000${agreement.company_signature_url}`} 
+                        src={`http://stag-io-backend.onrender.com${agreement.company_signature_url}`} 
                         alt="Company Signature"
                         className="max-h-20 object-contain border rounded bg-white p-2"
                       />
@@ -257,7 +257,7 @@ const ViewAgreement = () => {
                   {agreement.university_signed && agreement.university_signature_url ? (
                     <>
                       <img 
-                        src={`http://localhost:5000${agreement.university_signature_url}`} 
+                        src={`http://stag-io-backend.onrender.com${agreement.university_signature_url}`} 
                         alt="University Signature"
                         className="max-h-20 object-contain border rounded bg-white p-2"
                       />

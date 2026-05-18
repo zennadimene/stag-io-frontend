@@ -274,7 +274,8 @@ const [wilayas] = useState([
       const token = localStorage.getItem('token');
       const params = new URLSearchParams(filterParams);
       
-      const response = await axios.get(`http://localhost:5000/api/internships?${params}`, {
+     // const response = await axios.get(`http://localhost:5000/api/internships?${params}`, {
+     const response = await axios.get(`https://stag-io-backend.onrender.com/api/internships?${params}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -378,8 +379,9 @@ const [wilayas] = useState([
     try {
       setApplying(internshipId);
       const token = localStorage.getItem('token');
+      //const response = await axios.post('http://localhost:5000/api/student/applications',
       const response = await axios.post(
-        'http://localhost:5000/api/student/applications',
+        'https://stag-io-backend.onrender.com/api/student/applications',
         { internship_id: internshipId },
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -407,7 +409,8 @@ const [wilayas] = useState([
   const fetchSavedInternships = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/student/saved-internships', {
+      //const response = await axios.get('http://localhost:5000/api/student/saved-internships', {
+      const response = await axios.get('https://stag-io-backend.onrender.com/api/student/saved-internships', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -426,8 +429,8 @@ const [wilayas] = useState([
       setSaving(internshipId);
       const token = localStorage.getItem('token');
       
-      await axios.post(
-        `http://localhost:5000/api/student/saved-internships/${internshipId}`,
+      //await axios.post(`http://localhost:5000/api/student/saved-internships/${internshipId}`,
+      await axios.post(`https://stag-io-backend.onrender.com/api/student/saved-internships/${internshipId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -449,8 +452,8 @@ const [wilayas] = useState([
       setSaving(internshipId);
       const token = localStorage.getItem('token');
       
-      await axios.delete(
-        `http://localhost:5000/api/student/saved-internships/${internshipId}`,
+      //await axios.delete(`http://localhost:5000/api/student/saved-internships/${internshipId}`,
+      await axios.delete(`https://stag-io-backend.onrender.com/api/student/saved-internships/${internshipId}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }

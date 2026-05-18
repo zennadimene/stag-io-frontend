@@ -38,7 +38,7 @@ const CompanyNotifications = () => {
   const fetchNotifications = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/company/notifications', {
+      const response = await axios.get('http://stag-io-backend.onrender.com/api/company/notifications', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -58,7 +58,7 @@ const CompanyNotifications = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:5000/api/company/notifications/${notificationId}/read`,
+        `http://stag-io-backend.onrender.com/api/company/notifications/${notificationId}/read`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -78,7 +78,7 @@ const CompanyNotifications = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        'http://localhost:5000/api/company/notifications/read-all',
+        'http://stag-io-backend.onrender.com/api/company/notifications/read-all',
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -111,7 +111,7 @@ const CompanyNotifications = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.put(
-        `http://localhost:5000/api/company/agreements/${agreementId}/sign`,
+        `http://stag-io-backend.onrender.com/api/company/agreements/${agreementId}/sign`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -38,7 +38,7 @@ const CompanyAgreements = () => {
   const fetchAgreements = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/company/agreements', {
+      const response = await axios.get('http://stag-io-backend.onrender.com/api/company/agreements', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -69,7 +69,7 @@ const completedCount = agreements.filter(a =>
     const token = localStorage.getItem('token');
     // ✅ استخدم نفس الرابط (لكن تأكد من أن الـ Backend للشركة ينتج CONVENTION DE STAGE)
     const response = await axios.get(
-      `http://localhost:5000/api/company/agreements/${agreementId}/download`,
+      `http://stag-io-backend.onrender.com/api/company/agreements/${agreementId}/download`,
       {
         headers: { Authorization: `Bearer ${token}` },
         responseType: 'blob'

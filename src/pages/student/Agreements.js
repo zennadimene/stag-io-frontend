@@ -39,7 +39,7 @@ const Agreements = () => {
   const fetchAgreements = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/student/agreements', {
+      const response = await axios.get('http://stag-io-backend.onrender.com/api/student/agreements', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -94,7 +94,7 @@ const signAgreement = (agreementId) => {
     
     // ✅ هذا الرابط ينتج CONVENTION DE STAGE (مع social_security و academic_supervisor)
     const response = await axios.get(
-      `http://localhost:5000/api/student/agreements/${agreementId}/download`,
+      `http://stag-io-backend.onrender.com/api/student/agreements/${agreementId}/download`,
       {
         headers: { Authorization: `Bearer ${token}` },
         responseType: 'blob'

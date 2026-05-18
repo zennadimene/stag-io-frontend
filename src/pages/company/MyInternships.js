@@ -40,7 +40,7 @@ const MyInternships = () => {
   const fetchInternships = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/company/internships', {
+      const response = await axios.get('http://stag-io-backend.onrender.com/api/company/internships', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -59,7 +59,7 @@ const MyInternships = () => {
     const token = localStorage.getItem('token');
     
     const response = await axios.delete(
-      `http://localhost:5000/api/company/internships/${internshipId}`,
+      `http://stag-io-backend.onrender.com/api/company/internships/${internshipId}`,
       {
         headers: { Authorization: `Bearer ${token}` }
       }
@@ -94,7 +94,7 @@ const MyInternships = () => {
   const handleStatusChange = async (internshipId, newStatus) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/company/internships/${internshipId}/status`, 
+      await axios.put(`http://stag-io-backend.onrender.com/api/company/internships/${internshipId}/status`, 
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );

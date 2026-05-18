@@ -20,7 +20,7 @@ const Preferences = () => {
     const fetchPreferences = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:5000/api/student/preferences', {
+            const response = await fetch('http://stag-io-backend.onrender.com/api/student/preferences', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -45,7 +45,7 @@ const Preferences = () => {
         try {
             const token = localStorage.getItem('token');
             
-            const response = await fetch('http://localhost:5000/api/student/preferences', {
+            const response = await fetch('http://stag-io-backend.onrender.com/api/student/preferences', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

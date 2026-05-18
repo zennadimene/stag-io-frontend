@@ -76,7 +76,7 @@ const AdminDashboard = () => {
   const fetchNotifications = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/admin/notifications', {
+      const response = await axios.get('http://stag-io-backend.onrender.com/api/admin/notifications', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -94,7 +94,7 @@ const AdminDashboard = () => {
 const fetchStats = async () => {
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.get('http://localhost:5000/api/admin/stats', {
+    const response = await axios.get('http://stag-io-backend.onrender.com/api/admin/stats', {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -141,7 +141,7 @@ const fetchStats = async () => {
   const fetchPlacementStats = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/admin/placement-stats', {
+      const response = await axios.get('http://stag-io-backend.onrender.com/api/admin/placement-stats', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -162,7 +162,7 @@ const fetchStats = async () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:5000/api/admin/notifications/${notificationId}/read`,
+        `http://stag-io-backend.onrender.com/api/admin/notifications/${notificationId}/read`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -180,7 +180,7 @@ const fetchStats = async () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        'http://localhost:5000/api/admin/notifications/read-all',
+        'http://stag-io-backend.onrender.com/api/admin/notifications/read-all',
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -228,7 +228,7 @@ const fetchStats = async () => {
         console.log('🔍 Fetching internship_id for application:', notification.application_id);
         
         const appResponse = await axios.get(
-          `http://localhost:5000/api/admin/applications/${notification.application_id}`,
+          `http://stag-io-backend.onrender.com/api/admin/applications/${notification.application_id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         
@@ -245,7 +245,7 @@ const fetchStats = async () => {
     if (!internshipId) {
       try {
         const searchResponse = await axios.get(
-          `http://localhost:5000/api/admin/internships/search?title=${encodeURIComponent(internshipTitle)}&company=${encodeURIComponent(companyName)}`,
+          `http://stag-io-backend.onrender.com/api/admin/internships/search?title=${encodeURIComponent(internshipTitle)}&company=${encodeURIComponent(companyName)}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         
@@ -265,7 +265,7 @@ const fetchStats = async () => {
     }
     
     const response = await axios.post(
-      'http://localhost:5000/api/admin/agreements/generate-from-notification',
+      'http://stag-io-backend.onrender.com/api/admin/agreements/generate-from-notification',
       {
         notificationId: notification.id,
         studentName: studentName,
@@ -296,7 +296,7 @@ const fetchStats = async () => {
     setCompaniesLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/admin/companies', {
+      const response = await axios.get('http://stag-io-backend.onrender.com/api/admin/companies', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -314,7 +314,7 @@ const fetchStats = async () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:5000/api/admin/companies/${companyId}/verify`,
+        `http://stag-io-backend.onrender.com/api/admin/companies/${companyId}/verify`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -334,7 +334,7 @@ const fetchStats = async () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:5000/api/admin/companies/${companyId}/suspend`,
+        `http://stag-io-backend.onrender.com/api/admin/companies/${companyId}/suspend`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -354,7 +354,7 @@ const fetchStats = async () => {
     try {
       const token = localStorage.getItem('token');
       await axios.delete(
-        `http://localhost:5000/api/admin/companies/${companyId}`,
+        `http://stag-io-backend.onrender.com/api/admin/companies/${companyId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setCompanies(companies.filter(c => c.id !== companyId));
@@ -369,7 +369,7 @@ const fetchStats = async () => {
     setStudentsLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/admin/students', {
+      const response = await axios.get('http://stag-io-backend.onrender.com/api/admin/students', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -393,7 +393,7 @@ const fetchStats = async () => {
   try {
     const token = localStorage.getItem('token');
     const response = await axios.put(
-      `http://localhost:5000/api/admin/students/${studentId}/suspend`,
+      `http://stag-io-backend.onrender.com/api/admin/students/${studentId}/suspend`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -416,7 +416,7 @@ const verifyStudent = async (studentId) => {
     const token = localStorage.getItem('token');
     // ✅ تغيير من /verify إلى /approve
     const response = await axios.put(
-      `http://localhost:5000/api/admin/students/${studentId}/approve`,
+      `http://stag-io-backend.onrender.com/api/admin/students/${studentId}/approve`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -443,7 +443,7 @@ const deleteStudent = async (studentId) => {
   try {
     const token = localStorage.getItem('token');
     const response = await axios.delete(
-      `http://localhost:5000/api/admin/students/${studentId}`,
+      `http://stag-io-backend.onrender.com/api/admin/students/${studentId}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     
@@ -463,7 +463,7 @@ const deleteStudent = async (studentId) => {
     setAgreementsLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/admin/agreements', {
+      const response = await axios.get('http://stag-io-backend.onrender.com/api/admin/agreements', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -498,7 +498,7 @@ const handleValidateInternship = async (notification) => {
     
     // ✅ 1. مصادقة التدريب
     const response = await axios.put(
-      `http://localhost:5000/api/admin/applications/${notification.application_id}/validate`,
+      `http://stag-io-backend.onrender.com/api/admin/applications/${notification.application_id}/validate`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -508,7 +508,7 @@ const handleValidateInternship = async (notification) => {
       
       // ✅ 2. جلب تفاصيل التقديم كاملة
       const appDetails = await axios.get(
-        `http://localhost:5000/api/admin/applications/${notification.application_id}/details`,
+        `http://stag-io-backend.onrender.com/api/admin/applications/${notification.application_id}/details`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
@@ -517,13 +517,13 @@ const handleValidateInternship = async (notification) => {
         
         // ✅ 3. جلب بيانات الطالب
         const studentData = await axios.get(
-          `http://localhost:5000/api/admin/students/${application.student_id}`,
+          `http://stag-io-backend.onrender.com/api/admin/students/${application.student_id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         
         // ✅ 4. جلب بيانات الشركة
         const companyData = await axios.get(
-          `http://localhost:5000/api/admin/companies/${application.company_id}`,
+          `http://stag-io-backend.onrender.com/api/admin/companies/${application.company_id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         
@@ -551,7 +551,7 @@ const handleValidateInternship = async (notification) => {
         
         // ✅ 6. توليد PDF تلقائياً
         const pdfResponse = await axios.post(
-          'http://localhost:5000/api/admin/agreements/generate-pdf',
+          'http://stag-io-backend.onrender.com/api/admin/agreements/generate-pdf',
           agreementData,
           { 
             headers: { Authorization: `Bearer ${token}` },
@@ -572,7 +572,7 @@ const handleValidateInternship = async (notification) => {
         
         // ✅ 8. إنشاء الاتفاقية في قاعدة البيانات
         await axios.post(
-          'http://localhost:5000/api/admin/agreements/generate-from-validation',
+          'http://stag-io-backend.onrender.com/api/admin/agreements/generate-from-validation',
           { 
             applicationId: notification.application_id,
             agreementData: agreementData
@@ -628,7 +628,7 @@ const generateAgreementPDF = async (agreementData) => {
     
     // ✅ استخدم GET endpoint مباشرة (بدون POST إضافي)
     const response = await axios.get(
-      `http://localhost:5000/api/admin/agreements/${agreementData.id}/download`,
+      `http://stag-io-backend.onrender.com/api/admin/agreements/${agreementData.id}/download`,
       { 
         headers: { Authorization: `Bearer ${token}` },
         responseType: 'blob'
@@ -662,7 +662,7 @@ const generateAgreementPDF = async (agreementData) => {
     toast.loading('Sending agreement...', { id: 'sending' });
     
     await axios.post(
-      `http://localhost:5000/api/admin/agreements/${agreementId}/send`,
+      `http://stag-io-backend.onrender.com/api/admin/agreements/${agreementId}/send`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -684,7 +684,7 @@ const generateAgreementPDF = async (agreementData) => {
   try {
     const token = localStorage.getItem('token');
     await axios.put(
-      `http://localhost:5000/api/admin/agreements/${agreementId}/archive`,
+      `http://stag-io-backend.onrender.com/api/admin/agreements/${agreementId}/archive`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -704,7 +704,7 @@ const unarchiveAgreement = async (agreementId) => {
   try {
     const token = localStorage.getItem('token');
     const response = await axios.put(
-      `http://localhost:5000/api/admin/agreements/${agreementId}/unarchive`,
+      `http://stag-io-backend.onrender.com/api/admin/agreements/${agreementId}/unarchive`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -728,7 +728,7 @@ const unarchiveAgreement = async (agreementId) => {
 
        // ✅ أضف agreementId إلى البيانات المرسلة
     const response = await axios.post(
-      'http://localhost:5000/api/admin/certificates/generate',
+      'http://stag-io-backend.onrender.com/api/admin/certificates/generate',
       {
         studentName: agreementData.studentName,
         companyName: agreementData.companyName,
@@ -762,7 +762,7 @@ const unarchiveAgreement = async (agreementId) => {
     
     // ✅ أضف agreementId فقط (startDate و endDate ستأتي من قاعدة البيانات)
     const response = await axios.post(
-      'http://localhost:5000/api/admin/evaluation/generate',
+      'http://stag-io-backend.onrender.com/api/admin/evaluation/generate',
       {
         studentName: agreementData.studentName,
         companyName: agreementData.companyName,
@@ -798,7 +798,7 @@ const generateAcceptanceLetter = async (agreementData) => {
     
     // ✅ أضف agreementId فقط (startDate ستأتي من قاعدة البيانات)
     const response = await axios.post(
-      'http://localhost:5000/api/admin/acceptance-letter/generate',
+      'http://stag-io-backend.onrender.com/api/admin/acceptance-letter/generate',
       {
         studentName: agreementData.studentName,
         companyName: agreementData.companyName,
@@ -981,7 +981,7 @@ const activateStudent = async (studentId) => {
     try {
         const token = localStorage.getItem('token');
         const response = await axios.put(
-            `http://localhost:5000/api/admin/students/${studentId}/unsuspend`,
+            `http://stag-io-backend.onrender.com/api/admin/students/${studentId}/unsuspend`,
             {},
             { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -1754,7 +1754,7 @@ const filteredNotifications = notifications.filter(notification => {
                               <div className="bg-gradient-to-br from-indigo-100 to-purple-100 p-3 rounded-xl">
                                 {company.logo_url ? (
                                   <img 
-                                    src={`http://localhost:5000${company.logo_url}`}
+                                    src={`http://stag-io-backend.onrender.com${company.logo_url}`}
                                     alt={company.company_name}
                                     className="w-10 h-10 rounded-lg object-cover"
                                   />
@@ -1864,7 +1864,7 @@ const filteredNotifications = notifications.filter(notification => {
                 <div className="bg-gradient-to-br from-purple-100 to-pink-100 p-3 rounded-xl">
                   {student.profile_image_url ? (
                     <img 
-                      src={`http://localhost:5000${student.profile_image_url}`}
+                      src={`http://stag-io-backend.onrender.com${student.profile_image_url}`}
                       alt={`${student.first_name} ${student.last_name}`}
                       className="w-10 h-10 rounded-lg object-cover"
                     />

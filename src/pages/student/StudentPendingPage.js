@@ -36,7 +36,7 @@ export default function StudentPendingPage() {
     setChecking(true);
     
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/check-student-status", {
+      const response = await axios.post("http://stag-io-backend.onrender.com/api/auth/check-student-status", {
         email: studentEmail
       });
       

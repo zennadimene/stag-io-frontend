@@ -22,7 +22,7 @@ const AdminInternshipDetails = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        `http://localhost:5000/api/admin/internships/${applicationId}/details`,
+        `http://stag-io-backend.onrender.com/api/admin/internships/${applicationId}/details`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
@@ -46,7 +46,7 @@ const handleValidate = async () => {
         
         // 1. مصادقة التدريب
         const response = await axios.put(
-            `http://localhost:5000/api/admin/applications/${applicationId}/validate`,
+            `http://stag-io-backend.onrender.com/api/admin/applications/${applicationId}/validate`,
             {},
             { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -57,7 +57,7 @@ const handleValidate = async () => {
             // 2. إنشاء الاتفاقية
             try {
                 const agreementResponse = await axios.post(
-                    `http://localhost:5000/api/admin/agreements/generate-from-validation`,
+                    `http://stag-io-backend.onrender.com/api/admin/agreements/generate-from-validation`,
                     { applicationId: applicationId },
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
@@ -94,7 +94,7 @@ const handleValidate = async () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.put(
-        `http://localhost:5000/api/admin/applications/${applicationId}/reject`,
+        `http://stag-io-backend.onrender.com/api/admin/applications/${applicationId}/reject`,
         { reason: rejectReason },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -204,7 +204,7 @@ const handleValidate = async () => {
                 <div className="flex justify-center">
                   {application.profile_image_url ? (
                     <img 
-                      src={`http://localhost:5000${application.profile_image_url}`}
+                      src={`http://stag-io-backend.onrender.com${application.profile_image_url}`}
                       alt={`${application.first_name} ${application.last_name}`}
                       className="w-32 h-32 rounded-full object-cover border-4 border-indigo-100"
                     />
@@ -426,7 +426,7 @@ const handleValidate = async () => {
               <div className="flex items-start gap-6 mb-6">
                 {application.logo_url ? (
                   <img 
-                    src={`http://localhost:5000${application.logo_url}`}
+                    src={`http://stag-io-backend.onrender.com${application.logo_url}`}
                     alt={application.company_name}
                     className="w-20 h-20 rounded-xl object-cover"
                   />

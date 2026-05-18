@@ -45,7 +45,7 @@ const SavedInternships = () => {
     const token = localStorage.getItem('token');
     console.log('🔍 Fetching saved internships...');
     
-    const response = await axios.get('http://localhost:5000/api/student/saved-internships', {
+    const response = await axios.get('http://stag-io-backend.onrender.com/api/student/saved-internships', {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -84,7 +84,7 @@ const fetchRecommendations = async () => {
     setLoadingRecs(true);
     const token = localStorage.getItem('token');
     
-    const response = await axios.get('http://localhost:5000/api/student/saved-internships/recommendations', {
+    const response = await axios.get('http://stag-io-backend.onrender.com/api/student/saved-internships/recommendations', {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -107,7 +107,7 @@ const fetchRecommendations = async () => {
       const token = localStorage.getItem('token');
       
       await axios.delete(
-        `http://localhost:5000/api/student/saved-internships/${internshipId}`,
+        `http://stag-io-backend.onrender.com/api/student/saved-internships/${internshipId}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -131,7 +131,7 @@ const fetchRecommendations = async () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete('http://localhost:5000/api/student/saved-internships', {
+      await axios.delete('http://stag-io-backend.onrender.com/api/student/saved-internships', {
         headers: { Authorization: `Bearer ${token}` }
       });
       

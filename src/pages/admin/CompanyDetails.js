@@ -21,7 +21,7 @@ const CompanyDetails = () => {
   const fetchCompanyDetails = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5000/api/admin/companies/${companyId}`, {
+      const response = await axios.get(`http://stag-io-backend.onrender.com/api/admin/companies/${companyId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -37,7 +37,7 @@ const CompanyDetails = () => {
   const fetchCompanyInternships = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5000/api/admin/companies/${companyId}/internships`, {
+      const response = await axios.get(`http://stag-io-backend.onrender.com/api/admin/companies/${companyId}/internships`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -52,7 +52,7 @@ const CompanyDetails = () => {
   const fetchCompanyApplications = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5000/api/admin/companies/${companyId}/applications`, {
+      const response = await axios.get(`http://stag-io-backend.onrender.com/api/admin/companies/${companyId}/applications`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -100,7 +100,7 @@ const CompanyDetails = () => {
             <div className="flex items-center gap-4">
               {company.logo_url ? (
                 <img 
-                  src={`http://localhost:5000${company.logo_url}`}
+                  src={`http://stag-io-backend.onrender.com${company.logo_url}`}
                   alt={company.company_name}
                   className="w-20 h-20 rounded-xl object-cover"
                 />

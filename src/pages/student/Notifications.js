@@ -26,7 +26,7 @@ const Notifications = () => {
 const fetchNotifications = async () => {
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.get('http://localhost:5000/api/student/notifications', {
+    const response = await axios.get('http://stag-io-backend.onrender.com/api/student/notifications', {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -51,7 +51,7 @@ const markAsRead = async (notificationId) => {
     const token = localStorage.getItem('token');
     
     const response = await axios.put(
-      `http://localhost:5000/api/student/notifications/${notificationId}/read`,
+      `http://stag-io-backend.onrender.com/api/student/notifications/${notificationId}/read`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -74,7 +74,7 @@ const markAllAsRead = async () => {
     const token = localStorage.getItem('token');
     
     const response = await axios.put(
-      'http://localhost:5000/api/student/notifications/read-all',
+      'http://stag-io-backend.onrender.com/api/student/notifications/read-all',
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );

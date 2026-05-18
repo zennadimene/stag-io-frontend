@@ -22,7 +22,8 @@ export default function ForgotPassword() {
     setLoading(true);
     
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/forgot-password", {
+      //const response = await axios.post("http://localhost:5000/api/auth/forgot-password", {
+      const response = await axios.post("http://stag-io-backend.onrender.com/api/auth/forgot-password", {
         email
       });
       
