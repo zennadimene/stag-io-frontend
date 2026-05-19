@@ -6,6 +6,8 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { CheckCircle, XCircle, Loader2 } from "lucide-react";
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 
 export default function VerifyEmail() {
   const { token } = useParams();
@@ -17,7 +19,7 @@ export default function VerifyEmail() {
     const verifyEmail = async () => {
       try {
         //const response = await axios.get(`http://localhost:5000/api/auth/verify-email/${token}`);
-        const response = await axios.get(`https://stag-io-backend.onrender.com/api/auth/verify-email/${token}`);
+        const response = await axios.get(`${BASE}/api/auth/verify-email/${token}`);
         if (response.data.success) {
           setStatus("success");
           setMessage(response.data.message || "Email verified successfully!");

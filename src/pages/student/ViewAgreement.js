@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast'; 
 import { Download, Eye, ArrowLeft, Building, Calendar, DollarSign, CheckCircle } from 'lucide-react';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const ViewAgreement = () => {
   const navigate = useNavigate();
   const { agreementId } = useParams();
@@ -35,9 +37,11 @@ const ViewAgreement = () => {
       
       let url = '';
       if (user.user_type === 'student') {
-        url = `http://stag-io-backend.onrender.com/api/student/agreements/${agreementId}`;
+        //url = `http://localhost:5000/api/student/agreements/${agreementId}`;
+        url = `${BASE}/api/student/agreements/${agreementId}`;
       } else if (user.user_type === 'company') {
-        url = `http://stag-io-backend.onrender.com/api/company/agreements/${agreementId}`;
+        //url = `http://localhost:5000/api/company/agreements/${agreementId}`;
+        url = `${BASE}/api/company/agreements/${agreementId}`;
       } else {
         toast.error('Invalid user type');
         setLoading(false);
@@ -66,9 +70,11 @@ const ViewAgreement = () => {
       
       let url = '';
       if (user.user_type === 'student') {
-        url = `http://stag-io-backend.onrender.com/api/student/agreements/${agreementId}/download`;
+        //url = `http://localhost:5000/api/student/agreements/${agreementId}/download`;
+        url = `${BASE}/api/student/agreements/${agreementId}/download`;
       } else if (user.user_type === 'company') {
-        url = `http://stag-io-backend.onrender.com/api/company/agreements/${agreementId}/download`;
+        //url = `http://localhost:5000/api/company/agreements/${agreementId}/download`;
+        url = `${BASE}/api/company/agreements/${agreementId}/download`;
       } else {
         toast.error('Invalid user type');
         return;
@@ -215,7 +221,7 @@ const ViewAgreement = () => {
                   {agreement.student_signed && agreement.signature_url ? (
                     <>
                       <img 
-                        src={`http://stag-io-backend.onrender.com${agreement.signature_url}`} 
+                        src={`${BASE}${agreement.signature_url}`} 
                         alt="Student Signature"
                         className="max-h-20 object-contain border rounded bg-white p-2"
                       />
@@ -236,7 +242,7 @@ const ViewAgreement = () => {
                   {agreement.company_signed && agreement.company_signature_url ? (
                     <>
                       <img 
-                        src={`http://stag-io-backend.onrender.com${agreement.company_signature_url}`} 
+                        src={`${BASE}${agreement.company_signature_url}`} 
                         alt="Company Signature"
                         className="max-h-20 object-contain border rounded bg-white p-2"
                       />
@@ -257,7 +263,7 @@ const ViewAgreement = () => {
                   {agreement.university_signed && agreement.university_signature_url ? (
                     <>
                       <img 
-                        src={`http://stag-io-backend.onrender.com${agreement.university_signature_url}`} 
+                        src={`${BASE}${agreement.university_signature_url}`} 
                         alt="University Signature"
                         className="max-h-20 object-contain border rounded bg-white p-2"
                       />

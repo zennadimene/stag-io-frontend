@@ -17,6 +17,8 @@ import { getSmartRecommendations, trackInteraction } from '../../services/matchi
 import RecommendationCard from '../../components/student/RecommendationCard';
 import { toast } from 'react-hot-toast';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const SmartRecommendations = () => {
   const navigate = useNavigate();
   const [recommendations, setRecommendations] = useState([]);
@@ -67,7 +69,8 @@ const SmartRecommendations = () => {
   const fetchSavedInternships = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://stag-io-backend.onrender.com/api/student/saved-internships', {
+      //const response = await fetch('http://localhost:5000/api/student/saved-internships', {
+      const response = await fetch(`${BASE}/api/student/saved-internships`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();
@@ -83,9 +86,10 @@ const SmartRecommendations = () => {
   const handleSave = async (internshipId) => {
     try {
       const token = localStorage.getItem('token');
-      const method = savedIds.includes(internshipId) ? 'DELETE' : 'POST';
+      const method = savedIds.includes(internshipId) ? 'DELETE' : 'POST'; 
       
-      await fetch(`http://stag-io-backend.onrender.com/api/student/saved-internships/${internshipId}`, {
+      //await fetch(`http://localhost:5000/api/student/saved-internships/${internshipId}`, {
+      await fetch(`${BASE}/api/student/saved-internships/${internshipId}`, {
         method,
         headers: { Authorization: `Bearer ${token}` }
       });

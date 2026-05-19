@@ -4,6 +4,8 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast'; 
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const EditProfile = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({
@@ -163,7 +165,8 @@ const formatDateForInput = (dateString) => {
 const fetchProfile = async () => {
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.get('http://stag-io-backend.onrender.com/api/auth/me', {
+    //const response = await axios.get('http://localhost:5000/api/auth/me', {
+    const response = await axios.get(`${BASE} /api/auth/me`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -229,7 +232,8 @@ const fetchProfile = async () => {
       
       // ✅ مهم: استخدم الرابط الكامل للمعاينة
       if (profileData.profile_image_url) {
-        setProfileImagePreview(`http://stag-io-backend.onrender.com${profileData.profile_image_url}?t=${Date.now()}`);
+        //setProfileImagePreview(`http://localhost:5000${profileData.profile_image_url}?t=${Date.now()}`);
+        setProfileImagePreview(`${BASE}${profileData.profile_image_url}?t=${Date.now()}`);
       }
     }
   } catch (error) {
@@ -346,7 +350,8 @@ const handleSoftSkillKeyPress = (e) => {
 const fetchExperiences = async () => {
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.get('http://stag-io-backend.onrender.com/api/student/experiences', {
+    //const response = await axios.get('http://localhost:5000/api/student/experiences', {
+    const response = await axios.get(`${BASE}/api/student/experiences`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -362,7 +367,8 @@ const saveExperiences = async (newExperiences) => {
   try {
     const token = localStorage.getItem('token');
     await axios.post(
-      'http://stag-io-backend.onrender.com/api/student/experiences',
+      //'http://localhost:5000/api/student/experiences',
+      `${BASE}/api/student/experiences`,
       { experiences: newExperiences },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -465,7 +471,8 @@ const handleExperienceChange = (e) => {
     
     try {
       const response = await axios.post(
-        'http://stag-io-backend.onrender.com/api/student/profile/image',
+        //'http://localhost:5000/api/student/profile/image',
+        `${BASE}/api/student/profile/image`,
         formData,
         {
           headers: { 
@@ -512,7 +519,8 @@ const handleSubmit = async (e) => {
       imageFormData.append('profile_image', profile.profile_image);
       
       const imageResponse = await axios.post(
-        'http://stag-io-backend.onrender.com/api/student/profile/image',
+        //'http://localhost:5000/api/student/profile/image',
+        `${BASE}/api/student/profile/image`,
         imageFormData,
         {
           headers: { 
@@ -541,7 +549,8 @@ const handleSubmit = async (e) => {
         }));
         
         // ✅ تحديث المعاينة بالرابط الكامل
-        setProfileImagePreview(`http://stag-io-backend.onrender.com${newImageUrl}?t=${Date.now()}`);
+        //setProfileImagePreview(`http://localhost:5000${newImageUrl}?t=${Date.now()}`);
+        setProfileImagePreview(`${BASE}${newImageUrl}?t=${Date.now()}`);
       }
     }
     
@@ -572,7 +581,8 @@ const handleSubmit = async (e) => {
     console.log('📤 Updating profile data:', profileData);
     
     const response = await axios.put(
-      'http://stag-io-backend.onrender.com/api/student/profile',
+      //'http://localhost:5000/api/student/profile',
+      `${BASE}/api/student/profile`,
       profileData,
       {
         headers: { 
@@ -621,7 +631,8 @@ const handleDeleteProfileImage = async () => {
     const token = localStorage.getItem('token');
     
     const response = await axios.delete(
-      'http://stag-io-backend.onrender.com/api/student/profile/image',
+      //'http://localhost:5000/api/student/profile/image',
+      `${BASE}/api/student/profile/image`,
       {
         headers: { Authorization: `Bearer ${token}` }
       }

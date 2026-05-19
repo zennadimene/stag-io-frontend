@@ -17,6 +17,8 @@ import {
   FileSignature
 } from 'lucide-react';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const CompanyNotifications = () => {
   const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
@@ -38,7 +40,8 @@ const CompanyNotifications = () => {
   const fetchNotifications = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://stag-io-backend.onrender.com/api/company/notifications', {
+      //const response = await axios.get('http://localhost:5000/api/company/notifications', {
+      const response = await axios.get(`${BASE}/api/company/notifications`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -58,7 +61,8 @@ const CompanyNotifications = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://stag-io-backend.onrender.com/api/company/notifications/${notificationId}/read`,
+      //  `http://localhost:5000/api/company/notifications/${notificationId}/read`,
+        `${BASE}/api/company/notifications/${notificationId}/read`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -78,7 +82,8 @@ const CompanyNotifications = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        'http://stag-io-backend.onrender.com/api/company/notifications/read-all',
+        //'http://localhost:5000/api/company/notifications/read-all',
+        `${BASE}/api/company/notifications/read-all`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -111,7 +116,8 @@ const CompanyNotifications = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.put(
-        `http://stag-io-backend.onrender.com/api/company/agreements/${agreementId}/sign`,
+       // `http://localhost:5000/api/company/agreements/${agreementId}/sign`,
+        `${BASE}/api/company/agreements/${agreementId}/sign`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

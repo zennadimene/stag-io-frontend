@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 import SignatureCanvas from 'react-signature-canvas';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const AdminSignAgreement = () => {
   const navigate = useNavigate();
   const { agreementId } = useParams();
@@ -27,7 +29,8 @@ const AdminSignAgreement = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        `http://stag-io-backend.onrender.com/api/admin/agreements/${agreementId}`,
+        //`http://localhost:5000/api/admin/agreements/${agreementId}`,
+        `${BASE}/api/admin/agreements/${agreementId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
@@ -99,7 +102,8 @@ const AdminSignAgreement = () => {
       const token = localStorage.getItem('token');
       
       const response = await axios.put(
-        `http://stag-io-backend.onrender.com/api/admin/agreements/${agreementId}/sign`,
+        //`http://localhost:5000/api/admin/agreements/${agreementId}/sign`,
+        `${BASE}/api/admin/agreements/${agreementId}/sign`,
         { 
           signature: signature,
           signature_type: signatureType,

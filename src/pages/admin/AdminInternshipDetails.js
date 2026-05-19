@@ -5,6 +5,8 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const AdminInternshipDetails = () => {
   const { applicationId } = useParams();
   const navigate = useNavigate();
@@ -22,7 +24,8 @@ const AdminInternshipDetails = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        `http://stag-io-backend.onrender.com/api/admin/internships/${applicationId}/details`,
+        //`http://localhost:5000/api/admin/internships/${applicationId}/details`,
+        `${BASE}/api/admin/internships/${applicationId}/details`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
@@ -46,7 +49,8 @@ const handleValidate = async () => {
         
         // 1. مصادقة التدريب
         const response = await axios.put(
-            `http://stag-io-backend.onrender.com/api/admin/applications/${applicationId}/validate`,
+           // `http://localhost:5000/api/admin/applications/${applicationId}/validate`,
+            `${BASE}/api/admin/applications/${applicationId}/validate`,
             {},
             { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -57,7 +61,8 @@ const handleValidate = async () => {
             // 2. إنشاء الاتفاقية
             try {
                 const agreementResponse = await axios.post(
-                    `http://stag-io-backend.onrender.com/api/admin/agreements/generate-from-validation`,
+                    //`http://localhost:5000/api/admin/agreements/generate-from-validation`,
+                    `${BASE}/api/admin/agreements/generate-from-validation`,
                     { applicationId: applicationId },
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
@@ -94,7 +99,8 @@ const handleValidate = async () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.put(
-        `http://stag-io-backend.onrender.com/api/admin/applications/${applicationId}/reject`,
+       // `http://localhost:5000/api/admin/applications/${applicationId}/reject`,
+        `${BASE}/api/admin/applications/${applicationId}/reject`,
         { reason: rejectReason },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -204,7 +210,7 @@ const handleValidate = async () => {
                 <div className="flex justify-center">
                   {application.profile_image_url ? (
                     <img 
-                      src={`http://stag-io-backend.onrender.com${application.profile_image_url}`}
+                      src={`${BASE}${application.profile_image_url}`}
                       alt={`${application.first_name} ${application.last_name}`}
                       className="w-32 h-32 rounded-full object-cover border-4 border-indigo-100"
                     />
@@ -426,7 +432,7 @@ const handleValidate = async () => {
               <div className="flex items-start gap-6 mb-6">
                 {application.logo_url ? (
                   <img 
-                    src={`http://stag-io-backend.onrender.com${application.logo_url}`}
+                    src={`${BASE}${application.logo_url}`}
                     alt={application.company_name}
                     className="w-20 h-20 rounded-xl object-cover"
                   />

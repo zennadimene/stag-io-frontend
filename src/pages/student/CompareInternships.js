@@ -15,6 +15,8 @@ import {
   ArrowLeft
 } from 'lucide-react';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const CompareInternships = () => {
   const navigate = useNavigate();
   const { internshipId } = useParams();
@@ -30,7 +32,8 @@ const CompareInternships = () => {
     try {
       const token = localStorage.getItem('token');
       
-      const mainRes = await axios.get(`http://stag-io-backend.onrender.com/api/internships/${internshipId}`, {
+      //const mainRes = await axios.get(`http://localhost:5000/api/internships/${internshipId}`, {
+      const mainRes = await axios.get(`${BASE}/api/internships/${internshipId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -38,7 +41,8 @@ const CompareInternships = () => {
         setMainInternship(mainRes.data.internship);
         
         const similarRes = await axios.get(
-          `http://stag-io-backend.onrender.com/api/internships/${internshipId}/similar`,
+          //`http://localhost:5000/api/internships/${internshipId}/similar`,
+          `${BASE}/api/internships/${internshipId}/similar`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         

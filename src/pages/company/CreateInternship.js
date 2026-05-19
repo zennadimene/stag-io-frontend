@@ -4,6 +4,8 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 
 const CreateInternship = () => {
   const navigate = useNavigate();
@@ -79,7 +81,8 @@ const CreateInternship = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://stag-io-backend.onrender.com/api/company/internships',
+        //'http://localhost:5000/api/company/internships',
+        `${BASE}/api/company/internships`,
         {
           ...formData,
           required_skills: formData.required_skills,

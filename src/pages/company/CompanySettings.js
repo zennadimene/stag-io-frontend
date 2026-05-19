@@ -27,6 +27,8 @@ import {
   Briefcase
 } from 'lucide-react';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const CompanySettings = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -157,7 +159,8 @@ const CompanySettings = () => {
     try {
       const token = localStorage.getItem('token');
       
-      const response = await axios.get('http://stag-io-backend.onrender.com/api/company/preferences', {
+      //const response = await axios.get('http://localhost:5000/api/company/preferences', {
+      const response = await axios.get(`${BASE}/api/company/preferences`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -216,7 +219,8 @@ const CompanySettings = () => {
       console.log('📤 Saving company settings:', JSON.stringify(settingsData, null, 2));
       
       const response = await axios.put(
-        'http://stag-io-backend.onrender.com/api/company/preferences',
+       // 'http://localhost:5000/api/company/preferences',
+        `${BASE}/api/company/preferences`,
         settingsData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -275,7 +279,8 @@ const CompanySettings = () => {
       const token = localStorage.getItem('token');
       
       const response = await axios.put(
-        'http://stag-io-backend.onrender.com/api/company/change-password',
+       // 'http://localhost:5000/api/company/change-password',
+        `${BASE}/api/company/change-password`,
         {
           currentPassword: passwordData.currentPassword,
           newPassword: passwordData.newPassword
@@ -380,7 +385,8 @@ const CompanySettings = () => {
       const token = localStorage.getItem('token');
       
       const response = await axios.delete(
-        'http://stag-io-backend.onrender.com/api/company/account',
+        //'http://localhost:5000/api/company/account',
+        `${BASE}/api/company/account`,
         {
           data: { password },
           headers: { Authorization: `Bearer ${token}` }

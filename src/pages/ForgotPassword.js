@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom"; // ✅ أضف useNavigate
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 export default function ForgotPassword() {
   const navigate = useNavigate(); // ✅ للتنقل بين الصفحات
   const [email, setEmail] = useState("");
@@ -23,7 +25,7 @@ export default function ForgotPassword() {
     
     try {
       //const response = await axios.post("http://localhost:5000/api/auth/forgot-password", {
-      const response = await axios.post("http://stag-io-backend.onrender.com/api/auth/forgot-password", {
+      const response = await axios.post(`${BASE}/api/auth/forgot-password`, {
         email
       });
       

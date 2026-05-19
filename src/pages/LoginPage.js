@@ -4,6 +4,8 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -58,7 +60,7 @@ function LoginPage() {
     setLoading(true);
     try {
       //const response = await axios.post("http://localhost:5000/api/auth/login", {
-      const response = await axios.post("https://stag-io-backend.onrender.com/api/auth/login", {
+      const response = await axios.post(`${BASE}/api/auth/login`, {
         email: formData.email,
         password: formData.password
       });

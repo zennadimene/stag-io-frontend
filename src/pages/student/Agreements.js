@@ -18,6 +18,8 @@ import {
   DollarSign
 } from 'lucide-react';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const Agreements = () => {
   const navigate = useNavigate();
   const [agreements, setAgreements] = useState([]);
@@ -39,7 +41,8 @@ const Agreements = () => {
   const fetchAgreements = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://stag-io-backend.onrender.com/api/student/agreements', {
+      //const response = await axios.get('http://localhost:5000/api/student/agreements', {
+      const response = await axios.get(`${BASE}/api/student/agreements`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -94,7 +97,8 @@ const signAgreement = (agreementId) => {
     
     // ✅ هذا الرابط ينتج CONVENTION DE STAGE (مع social_security و academic_supervisor)
     const response = await axios.get(
-      `http://stag-io-backend.onrender.com/api/student/agreements/${agreementId}/download`,
+      //`http://localhost:5000/api/student/agreements/${agreementId}/download`,
+      `${BASE}/api/student/agreements/${agreementId}/download`,
       {
         headers: { Authorization: `Bearer ${token}` },
         responseType: 'blob'

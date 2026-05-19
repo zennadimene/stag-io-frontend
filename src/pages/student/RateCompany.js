@@ -16,6 +16,8 @@ import {
   Users
 } from 'lucide-react';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const RateCompany = () => {
   const navigate = useNavigate();
   const { companyId, internshipId, agreementId } = useParams();
@@ -48,7 +50,8 @@ const fetchData = async () => {
     
     // جلب بيانات الشركة
     const companyRes = await axios.get(
-      `http://stag-io-backend.onrender.com/api/company/profile/${companyId}`,
+      //`http://localhost:5000/api/company/profile/${companyId}`,
+      `${BASE}/api/company/profile/${companyId}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     
@@ -56,7 +59,8 @@ const fetchData = async () => {
     
     // جلب بيانات التدريب
     const internshipRes = await axios.get(
-      `http://stag-io-backend.onrender.com/api/internships/${internshipId}`,
+      //`http://localhost:5000/api/internships/${internshipId}`,
+      `${BASE}/api/internships/${internshipId}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     
@@ -94,7 +98,8 @@ const fetchData = async () => {
       const token = localStorage.getItem('token');
       
       const response = await axios.post(
-        'http://stag-io-backend.onrender.com/api/student/rate-company',
+        //'http://localhost:5000/api/student/rate-company',
+        `${BASE}/api/student/rate-company`,
         {
           company_id: parseInt(companyId),
           internship_id: parseInt(internshipId),

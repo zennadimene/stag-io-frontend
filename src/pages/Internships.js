@@ -4,6 +4,7 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 
+
 import { 
   Search, 
   Filter, 
@@ -19,6 +20,9 @@ import {
   Bookmark,        // ✅ أضف هذا
   BookmarkCheck    // ✅ أضف هذا
 } from 'lucide-react';
+
+
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 const Internships = () => {
   const navigate = useNavigate();
@@ -274,8 +278,8 @@ const [wilayas] = useState([
       const token = localStorage.getItem('token');
       const params = new URLSearchParams(filterParams);
       
-     // const response = await axios.get(`http://localhost:5000/api/internships?${params}`, {
-     const response = await axios.get(`https://stag-io-backend.onrender.com/api/internships?${params}`, {
+    // const response = await axios.get(`http://localhost:5000/api/internships?${params}`, {
+    const response = await axios.get(`${BASE}/api/internships?${params}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -380,8 +384,7 @@ const [wilayas] = useState([
       setApplying(internshipId);
       const token = localStorage.getItem('token');
       //const response = await axios.post('http://localhost:5000/api/student/applications',
-      const response = await axios.post(
-        'https://stag-io-backend.onrender.com/api/student/applications',
+        const response = await axios.post(`${BASE}/api/student/applications`,
         { internship_id: internshipId },
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -410,7 +413,7 @@ const [wilayas] = useState([
     try {
       const token = localStorage.getItem('token');
       //const response = await axios.get('http://localhost:5000/api/student/saved-internships', {
-      const response = await axios.get('https://stag-io-backend.onrender.com/api/student/saved-internships', {
+         const response = await axios.get(`${BASE}/api/student/saved-internships`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -430,7 +433,7 @@ const [wilayas] = useState([
       const token = localStorage.getItem('token');
       
       //await axios.post(`http://localhost:5000/api/student/saved-internships/${internshipId}`,
-      await axios.post(`https://stag-io-backend.onrender.com/api/student/saved-internships/${internshipId}`,
+         await axios.post(`${BASE}/api/student/saved-internships/${internshipId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -453,7 +456,7 @@ const [wilayas] = useState([
       const token = localStorage.getItem('token');
       
       //await axios.delete(`http://localhost:5000/api/student/saved-internships/${internshipId}`,
-      await axios.delete(`https://stag-io-backend.onrender.com/api/student/saved-internships/${internshipId}`,
+      await axios.delete(`${BASE}/api/student/saved-internships/${internshipId}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }

@@ -19,6 +19,8 @@ import {
   Star
 } from 'lucide-react';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const SavedInternships = () => {
   const navigate = useNavigate();
   const [savedInternships, setSavedInternships] = useState([]);
@@ -45,7 +47,8 @@ const SavedInternships = () => {
     const token = localStorage.getItem('token');
     console.log('🔍 Fetching saved internships...');
     
-    const response = await axios.get('http://stag-io-backend.onrender.com/api/student/saved-internships', {
+    //const response = await axios.get('http://localhost:5000/api/student/saved-internships', {
+    const response = await axios.get(`${BASE}/api/student/saved-internships`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -82,9 +85,10 @@ const SavedInternships = () => {
 const fetchRecommendations = async () => {
   try {
     setLoadingRecs(true);
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token'); 
     
-    const response = await axios.get('http://stag-io-backend.onrender.com/api/student/saved-internships/recommendations', {
+    //const response = await axios.get('http://localhost:5000/api/student/saved-internships/recommendations', {
+    const response = await axios.get(`${BASE}/api/student/saved-internships/recommendations`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -107,7 +111,8 @@ const fetchRecommendations = async () => {
       const token = localStorage.getItem('token');
       
       await axios.delete(
-        `http://stag-io-backend.onrender.com/api/student/saved-internships/${internshipId}`,
+        //`http://localhost:5000/api/student/saved-internships/${internshipId}`,
+        `${BASE}/api/student/saved-internships/${internshipId}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -131,7 +136,8 @@ const fetchRecommendations = async () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete('http://stag-io-backend.onrender.com/api/student/saved-internships', {
+      //await axios.delete('http://localhost:5000/api/student/saved-internships', {
+      await axios.delete(`${BASE}/api/student/saved-internships`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       

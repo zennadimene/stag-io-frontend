@@ -4,6 +4,8 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast'; 
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const Notifications = () => {
   const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
@@ -26,7 +28,8 @@ const Notifications = () => {
 const fetchNotifications = async () => {
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.get('http://stag-io-backend.onrender.com/api/student/notifications', {
+    //const response = await axios.get('http://localhost:5000/api/student/notifications', {
+    const response = await axios.get(`${BASE}/api/student/notifications`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -51,7 +54,8 @@ const markAsRead = async (notificationId) => {
     const token = localStorage.getItem('token');
     
     const response = await axios.put(
-      `http://stag-io-backend.onrender.com/api/student/notifications/${notificationId}/read`,
+      //`http://localhost:5000/api/student/notifications/${notificationId}/read`,
+      `${BASE}/api/student/notifications/${notificationId}/read`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -74,7 +78,8 @@ const markAllAsRead = async () => {
     const token = localStorage.getItem('token');
     
     const response = await axios.put(
-      'http://stag-io-backend.onrender.com/api/student/notifications/read-all',
+      //'http://localhost:5000/api/student/notifications/read-all',
+      `${BASE}/api/student/notifications/read-all`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );

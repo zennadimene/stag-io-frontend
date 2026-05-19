@@ -31,6 +31,8 @@ import {
   Building2
 } from 'lucide-react';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const CompanyInternshipApplications = () => {
   const navigate = useNavigate();
   const { internshipId } = useParams();
@@ -81,7 +83,8 @@ const CompanyInternshipApplications = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        `http://stag-io-backend.onrender.com/api/company/internships/${internshipId}`,
+        //`http://localhost:5000/api/company/internships/${internshipId}`,
+        `${BASE}/api/company/internships/${internshipId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
@@ -103,7 +106,8 @@ const CompanyInternshipApplications = () => {
       console.log('🔍 Fetching applications for internship:', internshipId);
       
       const response = await axios.get(
-        `http://stag-io-backend.onrender.com/api/company/applications?internship_id=${internshipId}`,
+       // `http://localhost:5000/api/company/applications?internship_id=${internshipId}`,
+        `${BASE}/api/company/applications?internship_id=${internshipId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
@@ -170,7 +174,8 @@ const CompanyInternshipApplications = () => {
       }
       
       const response = await axios.put(
-        `http://stag-io-backend.onrender.com/api/company/applications/${applicationId}/status`,
+        //`http://localhost:5000/api/company/applications/${applicationId}/status`,
+        `${BASE}/api/company/applications/${applicationId}/status`,
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -208,7 +213,8 @@ const CompanyInternshipApplications = () => {
         
         try {
           await axios.post(
-            'http://stag-io-backend.onrender.com/api/notifications/send',
+            //'http://localhost:5000/api/notifications/send',
+            `${BASE}/api/notifications/send`,
             {
               user_type: 'admin',
               type: 'company_accept',

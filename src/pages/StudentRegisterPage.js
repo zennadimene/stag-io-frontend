@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export default function StudentRegisterPage() {
   const navigate = useNavigate();
@@ -263,7 +264,7 @@ const handleSubmit = async (e) => {
   
   try {
     //const response = await axios.post("http://localhost:5000/api/auth/register/student", studentData);
-    const response = await axios.post("https://stag-io-backend.onrender.com/api/auth/register/student", studentData);
+    const response = await axios.post(`${BASE}/api/auth/register/student`, studentData);
     if (response.data.success) {
       // ✅ إغلاق رسالة التحميل
       toast.dismiss(loadingToast);

@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const StudentProfile = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -29,7 +31,8 @@ const StudentProfile = () => {
   const fetchStudent = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://stag-io-backend.onrender.com/api/admin/students/${id}`, {
+      //const response = await axios.get(`http://localhost:5000/api/admin/students/${id}`, {
+      const response = await axios.get(`${BASE}/api/admin/students/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -47,7 +50,8 @@ const StudentProfile = () => {
   const fetchApplications = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://stag-io-backend.onrender.com/api/admin/students/${id}/applications`, {
+      //const response = await axios.get(`http://localhost:5000/api/admin/students/${id}/applications`, {
+      const response = await axios.get(`${BASE}/api/admin/students/${id}/applications`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -62,7 +66,8 @@ const StudentProfile = () => {
   const fetchAgreements = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://stag-io-backend.onrender.com/api/admin/students/${id}/agreements`, {
+      //const response = await axios.get(`http://localhost:5000/api/admin/students/${id}/agreements`, {
+      const response = await axios.get(`${BASE}/api/admin/students/${id}/agreements`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       

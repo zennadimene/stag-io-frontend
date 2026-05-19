@@ -4,6 +4,8 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast'; 
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const Applications = () => {
   const navigate = useNavigate();
   const [applications, setApplications] = useState([]);
@@ -29,7 +31,8 @@ const Applications = () => {
  const fetchApplications = async () => {
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.get('http://stag-io-backend.onrender.com/api/student/applications', {
+   // const response = await axios.get('http://localhost:5000/api/student/applications', {
+   const response = await axios.get(`${BASE}/api/student/applications`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -55,7 +58,8 @@ const Applications = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.delete(
-        `http://stag-io-backend.onrender.com/api/student/applications/${applicationId}`,
+       // `http://localhost:5000/api/student/applications/${applicationId}`,
+        `${BASE}/api/student/applications/${applicationId}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -80,7 +84,8 @@ const Applications = () => {
       setAcceptingOffer(applicationId);
       const token = localStorage.getItem('token');
       const response = await axios.put(
-        `http://stag-io-backend.onrender.com/api/student/applications/${applicationId}/accept`,
+        //`http://localhost:5000/api/student/applications/${applicationId}/accept`,
+        `${BASE}/api/student/applications/${applicationId}/accept`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -107,7 +112,8 @@ const Applications = () => {
       console.log('📥 Downloading agreement:', agreementId);
       
       const response = await axios.get(
-        `http://stag-io-backend.onrender.com/api/student/agreements/${agreementId}/download`,
+        //`http://localhost:5000/api/student/agreements/${agreementId}/download`,
+        `${BASE}/api/student/agreements/${agreementId}/download`,
         {
           headers: { Authorization: `Bearer ${token}` },
           responseType: 'blob'

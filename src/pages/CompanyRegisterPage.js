@@ -5,6 +5,9 @@ import Navbar from "../components/Navbar";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
+
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 export default function CompanyRegisterPage() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -232,7 +235,7 @@ export default function CompanyRegisterPage() {
   try {
     // Send as JSON, not FormData
     //const response = await axios.post("http://localhost:5000/api/auth/register/company", companyData, {
-    const response = await axios.post("http://stag-io-backend.onrender.com/api/auth/register/company", companyData, {
+    const response = await axios.post(`${BASE}/api/auth/register/company`, companyData, {
       headers: {
         'Content-Type': 'application/json'
       }

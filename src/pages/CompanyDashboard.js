@@ -43,6 +43,8 @@ import {
   ArrowRight
 } from 'lucide-react';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const CompanyDashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -87,7 +89,7 @@ useEffect(() => {
       console.log('🔍 Checking company account status...');
       
       //const response = await axios.get('http://localhost:5000/api/auth/me', {
-      const response = await axios.get('http://stag-io-backend.onrender.com/api/auth/me', {
+      const response = await axios.get(`${BASE}/api/auth/me`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -128,7 +130,7 @@ useEffect(() => {
     try {
       const token = localStorage.getItem('token');
       //const response = await axios.get('http://localhost:5000/api/company/profile', {
-      const response = await axios.get('http://stag-io-backend.onrender.com/api/company/profile', {
+      const response = await axios.get(`${BASE}/api/company/profile`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -147,7 +149,8 @@ useEffect(() => {
     try {
       const token = localStorage.getItem('token');
       //const response = await axios.get('http://localhost:5000/api/company/dashboard-stats', {
-      const response = await axios.get('http://stag-io-backend.onrender.com/api/company/dashboard-stats', {
+      const response = await axios.get(`${BASE}/api/company/dashboard-stats`, {
+
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -172,7 +175,7 @@ const fetchNotifications = async () => {
   try {
     const token = localStorage.getItem('token');
    // const response = await axios.get('http://localhost:5000/api/company/notifications', {
-   const response = await axios.get('http://stag-io-backend.onrender.com/api/company/notifications', {
+   const response = await axios.get(`${BASE}/api/company/notifications`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -194,13 +197,13 @@ const fetchRecentActivities = async () => {
     
     // جلب آخر 5 تطبيقات
     //const applicationsRes = await axios.get('http://localhost:5000/api/company/applications?limit=5', {
-    const applicationsRes = await axios.get('http://stag-io-backend.onrender.com/api/company/applications?limit=5', {
+    const applicationsRes = await axios.get(`${BASE}/api/company/applications?limit=5`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     
     // جلب آخر 5 تدريبات منشورة
     //const internshipsRes = await axios.get('http://localhost:5000/api/company/internships?limit=5', {
-      const internshipsRes = await axios.get('http://stag-io-backend.onrender.com/api/company/internships?limit=5', {
+      const internshipsRes = await axios.get(`${BASE}/api/company/internships?limit=5`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -300,7 +303,7 @@ const fetchAnalytics = async () => {
   try {
     const token = localStorage.getItem('token');
     //const response = await axios.get('http://localhost:5000/api/company/analytics', {
-      const response = await axios.get('http://stag-io-backend.onrender.com/api/company/analytics', {
+      const response = await axios.get(`${BASE}/api/company/analytics`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -476,7 +479,7 @@ console.log('📊 Rendering - suspended =', suspended);
                 <div className="relative group">
                   {profile?.logo_url ? (
                     <img 
-                      src={`https://stag-io-backend.onrender.com${profile.logo_url}`}
+                      src={`h${BASE}${profile.logo_url}`}
                       alt={profile.company_name}
                       className="w-10 h-10 rounded-full object-cover ring-2 ring-blue-500/20 group-hover:ring-4 transition-all duration-300"
                     />
@@ -613,7 +616,7 @@ console.log('📊 Rendering - suspended =', suspended);
             {profile?.cover_image_url && (
               <div className="h-32 overflow-hidden">
                 <img 
-                  src={`http://stag-io-backend.onrender.com${profile.cover_image_url}`}
+                  src={`${BASE}${profile.cover_image_url}`}
                   alt="Company Cover"
                   className="w-full h-full object-cover"
                 />
@@ -626,7 +629,7 @@ console.log('📊 Rendering - suspended =', suspended);
                 <div className="relative group">
                   {profile?.logo_url ? (
                     <img 
-                      src={`http://stag-io-backend.onrender.com${profile.logo_url}`}
+                      src={`${BASE}${profile.logo_url}`}
                       alt={profile.company_name}
                       className="w-20 h-20 rounded-xl object-cover ring-4 ring-white shadow-lg group-hover:scale-105 transition-transform duration-300"
                     />

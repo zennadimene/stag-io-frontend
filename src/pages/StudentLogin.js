@@ -4,6 +4,8 @@ import { Navigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 export default function StudentLogin() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [redirect, setRedirect] = useState(null);
@@ -14,7 +16,7 @@ export default function StudentLogin() {
     e.preventDefault();
     try {
       //const res = await axios.post("http://localhost:5000/api/auth/login", {
-      const res = await axios.post("https://stag-io-backend.onrender.com/api/auth/login", {
+      const res = await axios.post(`${BASE}/api/auth/login`, {
         ...form,
         role: "student" // تأكد من إرسال role كـ student
       });

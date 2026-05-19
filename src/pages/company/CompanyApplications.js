@@ -4,6 +4,8 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast'; 
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 
 const CompanyApplications = () => {
   const navigate = useNavigate();
@@ -43,7 +45,8 @@ const CompanyApplications = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://stag-io-backend.onrender.com/api/company/applications', {
+      //const response = await axios.get('http://localhost:5000/api/company/applications', {
+      const response = await axios.get(`${BASE}/api/company/applications`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -96,7 +99,8 @@ const updateStatus = async (applicationId, newStatus, feedback) => {
     
     // 1️⃣ تحديث الحالة في قاعدة البيانات
     const response = await axios.put(
-      `http://stag-io-backend.onrender.com/api/company/applications/${applicationId}/status`,
+      //`http://localhost:5000/api/company/applications/${applicationId}/status`,
+      `${BASE}/api/company/applications/${applicationId}/status`,
       { status: newStatus, feedback },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -202,7 +206,8 @@ const scheduleInterview = async () => {
     
     // إرسال الطلب للخادم
     const response = await axios.put(
-      `http://stag-io-backend.onrender.com/api/company/applications/${selectedApp.id}/status`,
+      //`http://localhost:5000/api/company/applications/${selectedApp.id}/status`,
+      `${BASE}/api/company/applications/${selectedApp.id}/status`,
       payload,
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -305,7 +310,8 @@ const scheduleInterview = async () => {
 
   const handleDownloadResume = (resumeUrl) => {
     if (resumeUrl) {
-      window.open(`http://stag-io-backend.onrender.com${resumeUrl}`, '_blank');
+      //window.open(`http://localhost:5000${resumeUrl}`, '_blank');
+      window.open(`${BASE}${resumeUrl}`, '_blank');
     } else {
        toast.error('No resume available');
     }

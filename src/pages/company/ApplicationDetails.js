@@ -22,6 +22,8 @@ import {
   Eye
 } from 'lucide-react';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const ApplicationDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -43,7 +45,8 @@ const ApplicationDetails = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        `http://stag-io-backend.onrender.com/api/company/applications/${id}`,
+        //`http://localhost:5000/api/company/applications/${id}`,
+        `${BASE}/api/company/applications/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
@@ -81,7 +84,8 @@ const ApplicationDetails = () => {
       }
       
       const response = await axios.put(
-        `http://stag-io-backend.onrender.com/api/company/applications/${id}/status`,
+      //  `http://localhost:5000/api/company/applications/${id}/status`,
+        `${BASE}/api/company/applications/${id}/status`,
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );

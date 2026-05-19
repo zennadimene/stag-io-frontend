@@ -2,6 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
+       const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const InternshipCard = ({ internship }) => {
   const navigate = useNavigate();
 
@@ -10,7 +12,8 @@ const InternshipCard = ({ internship }) => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://stag-io-backend.onrender.com/api/student/applications', {
+      //const response = await fetch('http://localhost:5000/api/student/applications', {
+      const response = await fetch(`${BASE}/api/student/applications`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -11,6 +11,8 @@ import {
   CheckCircle
 } from 'lucide-react';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const EditInternship = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -74,7 +76,8 @@ const EditInternship = () => {
   const fetchInternship = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://stag-io-backend.onrender.com/api/company/internships/${id}`, {
+      //const response = await axios.get(`http://localhost:5000/api/company/internships/${id}`, {
+      const response = await axios.get(`${BASE}/api/company/internships/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -137,7 +140,8 @@ const EditInternship = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.put(
-        `http://stag-io-backend.onrender.com/api/company/internships/${id}`,
+        //`http://localhost:5000/api/company/internships/${id}`,
+        `${BASE}/api/company/internships/${id}`,
         {
           ...formData,
           required_skills: formData.required_skills,

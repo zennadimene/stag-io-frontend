@@ -5,6 +5,8 @@ import Navbar from "../../components/Navbar";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 export default function StudentPendingPage() {
   const navigate = useNavigate();
   const [checking, setChecking] = useState(false);
@@ -36,7 +38,8 @@ export default function StudentPendingPage() {
     setChecking(true);
     
     try {
-      const response = await axios.post("http://stag-io-backend.onrender.com/api/auth/check-student-status", {
+      //const response = await axios.post("http://localhost:5000/api/auth/check-student-status", 
+      const response = await axios.post(`{${BASE}/api/auth/check-student-status`, {
         email: studentEmail
       });
       

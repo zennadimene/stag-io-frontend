@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 
+       const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const InternshipDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -18,7 +20,8 @@ const InternshipDetails = () => {
   const fetchInternshipDetails = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://stag-io-backend.onrender.com/api/internships/${id}`, {
+      //const response = await axios.get(`http://localhost:5000/api/internships/${id}`, {
+      const response = await axios.get(`${BASE}/api/internships/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -45,7 +48,8 @@ const InternshipDetails = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://stag-io-backend.onrender.com/api/student/applications',
+       // 'http://localhost:5000/api/student/applications',
+        `${BASE}/api/student/applications`,
         { internship_id: id },
         { headers: { Authorization: `Bearer ${token}` } }
       );

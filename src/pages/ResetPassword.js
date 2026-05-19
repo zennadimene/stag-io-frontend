@@ -6,6 +6,8 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { Eye, EyeOff } from "lucide-react";
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 export default function ResetPassword() {
   const navigate = useNavigate();
   const { token } = useParams(); // ✅ استلام token من الـ URL
@@ -24,7 +26,7 @@ export default function ResetPassword() {
     const verifyToken = async () => {
       try {
         //const response = await axios.get(`http://localhost:5000/api/auth/verify-reset-token/${token}`);
-        const response = await axios.get(`https://stag-io-backend.onrender.com/api/auth/verify-reset-token/${token}`);
+        const response = await axios.get(`${BASE}/api/auth/verify-reset-token/${token}`);
         setValidToken(response.data.valid);
       } catch (error) {
         setValidToken(false);
@@ -63,7 +65,7 @@ export default function ResetPassword() {
     
     try {
       //const response = await axios.post(`http://localhost:5000/api/auth/reset-password/${token}`, {
-      const response = await axios.post(`https://stag-io-backend.onrender.com/api/auth/reset-password/${token}`, {
+      const response = await axios.post(`${BASE}/api/auth/reset-password/${token}`, {
         password: formData.password
       });
       

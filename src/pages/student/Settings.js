@@ -28,6 +28,8 @@ import {
   Briefcase
 } from 'lucide-react';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const Settings = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -184,7 +186,8 @@ const fetchSettings = async () => {
   try {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');
     
-    const response = await axios.get('http://stag-io-backend.onrender.com/api/student/settings', {
+    //const response = await axios.get('http://localhost:5000/api/student/settings', {
+    const response = await axios.get(`${BASE}/api/student/settings`, {
       headers: { Authorization: `Bearer ${token}` }
     });
     
@@ -246,7 +249,8 @@ const handleSaveSettings = async () => {
     console.log('📤 Sending to server:', JSON.stringify(settingsData, null, 2));
     
     const response = await axios.put(
-      'http://stag-io-backend.onrender.com/api/student/settings',
+      //'http://localhost:5000/api/student/settings',
+      `${BASE}/api/student/settings`,
       settingsData,
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -309,7 +313,8 @@ const handleSaveSettings = async () => {
       const token = localStorage.getItem('token') || sessionStorage.getItem('token');
       
       const response = await axios.put(
-        'http://stag-io-backend.onrender.com/api/student/change-password',
+        //'http://localhost:5000/api/student/change-password',
+        `${BASE}/api/student/change-password`,
         {
           currentPassword: passwordData.currentPassword,
           newPassword: passwordData.newPassword
@@ -436,7 +441,8 @@ const handleDeleteAccount = async () => {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');
     
     const response = await axios.delete(
-      'http://stag-io-backend.onrender.com/api/student/account',
+      //'http://localhost:5000/api/student/account',
+      `${BASE}/api/student/account`,
       {
         data: { password },
         headers: { Authorization: `Bearer ${token}` }

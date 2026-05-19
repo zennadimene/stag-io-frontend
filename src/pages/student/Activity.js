@@ -15,6 +15,8 @@ import {
   AlertCircle
 } from 'lucide-react';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const Activity = () => {
   const navigate = useNavigate();
   const [activities, setActivities] = useState([]);
@@ -44,15 +46,18 @@ const Activity = () => {
       setLoading(true);
       const token = localStorage.getItem('token');
       
-      const applicationsRes = await axios.get('http://stag-io-backend.onrender.com/api/student/applications', {
+     // const applicationsRes = await axios.get('http://localhost:5000/api/student/applications', {
+      const applicationsRes = await axios.get(`${BASE}/api/student/applications`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
-      const notificationsRes = await axios.get('http://stag-io-backend.onrender.com/api/student/notifications', {
+     // const notificationsRes = await axios.get('http://localhost:5000/api/student/notifications', {
+      const notificationsRes = await axios.get(`${BASE}/api/student/notifications`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
-      const agreementsRes = await axios.get('http://stag-io-backend.onrender.com/api/student/agreements', {
+      //const agreementsRes = await axios.get('http://localhost:5000/api/student/agreements', {
+      const agreementsRes = await axios.get(`${BASE}/api/student/agreements`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       

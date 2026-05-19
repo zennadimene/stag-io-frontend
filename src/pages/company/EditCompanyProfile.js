@@ -24,6 +24,8 @@ import {
   Github
 } from 'lucide-react';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const EditCompanyProfile = () => {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
@@ -109,7 +111,8 @@ const EditCompanyProfile = () => {
   const fetchCompanyProfile = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://stag-io-backend.onrender.com/api/company/profile', {
+      //const response = await axios.get('http://localhost:5000/api/company/profile', {
+      const response = await axios.get(`${BASE}/api/company/profile`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -160,10 +163,12 @@ const EditCompanyProfile = () => {
         });
 
         if (profileData.logo_url) {
-          setLogoPreview(`http://stag-io-backend.onrender.com${profileData.logo_url}`);
+          //setLogoPreview(`http://localhost:5000${profileData.logo_url}`);
+          setLogoPreview(`${BASE}${profileData.logo_url}`);
         }
         if (profileData.cover_image_url) {
-          setCoverPreview(`http://stag-io-backend.onrender.com${profileData.cover_image_url}`);
+         // setCoverPreview(`http://localhost:5000${profileData.cover_image_url}`);
+          setCoverPreview(`${BASE}${profileData.cover_image_url}`);
         }
       }
     } catch (error) {
@@ -322,7 +327,8 @@ const handleSubmit = async (e) => {
     }
 
     const response = await axios.put(
-      'http://stag-io-backend.onrender.com/api/company/profile',
+      //'http://localhost:5000/api/company/profile',
+      `${BASE}/api/company/profile`,
       formDataToSend,
       {
         headers: { 

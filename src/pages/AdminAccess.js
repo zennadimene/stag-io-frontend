@@ -5,6 +5,8 @@ import { Navigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast";
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 export default function AdminAccess() {
   const [form, setForm] = useState({ 
     email: "", 
@@ -26,7 +28,8 @@ export default function AdminAccess() {
 
     try {
       // إرسال بدون role - Backend سيتعرف على Admin تلقائياً
-      const res = await axios.post("http://stag-io-backend.onrender.com/api/auth/login", {
+      //const res = await axios.post("http://localhost:5000/api/auth/login", 
+      const res = await axios.post(`{${BASE}/api/auth/login`, {
         email: form.email,
         password: form.password
       });

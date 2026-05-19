@@ -3,6 +3,8 @@ import axios from "axios";
 import { Navigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 export default function Login() {
   const [form, setForm] = useState({ 
     email: "", 
@@ -31,8 +33,8 @@ export default function Login() {
     }
 
     try {
-     // const res = await axios.post("http://localhost:5000/api/auth/login", {
-     const res = await axios.post("https://stag-io-backend.onrender.com/api/auth/login", {
+    // const res = await axios.post("http://localhost:5000/api/auth/login", {
+    const res = await axios.post(`${BASE}/api/auth/login`, {
         email: form.email,
         password: form.password,
         role: form.role

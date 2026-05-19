@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 import SignatureCanvas from 'react-signature-canvas';
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const SignAgreement = () => {
   const navigate = useNavigate();
   const { agreementId } = useParams();
@@ -26,8 +28,9 @@ const SignAgreement = () => {
   const fetchAgreement = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(
-        `http://stag-io-backend.onrender.com/api/student/agreements/${agreementId}`,
+      const response = await axios.get( 
+        //`http://localhost:5000/api/student/agreements/${agreementId}`,
+        `${BASE}/api/student/agreements/${agreementId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
@@ -99,7 +102,8 @@ const handleSignAgreement = async () => {
     const token = localStorage.getItem('token');
     
     const response = await axios.put(
-      `http://stag-io-backend.onrender.com/api/student/agreements/${agreementId}/sign`,
+      //`http://localhost:5000/api/student/agreements/${agreementId}/sign`,
+      `${BASE}/api/student/agreements/${agreementId}/sign`,
       { 
         signature: signature,
         signature_type: signatureType,
@@ -114,7 +118,8 @@ const handleSignAgreement = async () => {
       
       // ✅ جلب البيانات المحدثة للاتفاقية
       const updatedResponse = await axios.get(
-        `http://stag-io-backend.onrender.com/api/student/agreements/${agreementId}`,
+        //`http://localhost:5000/api/student/agreements/${agreementId}`,
+        `${BASE}/api/student/agreements/${agreementId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       
@@ -127,7 +132,8 @@ const handleSignAgreement = async () => {
         
         // ✅ تحديث الحالة إلى completed
         await axios.put(
-          `http://stag-io-backend.onrender.com/api/agreements/${agreementId}/complete`,
+          //`http://localhost:5000/api/agreements/${agreementId}/complete`,
+          `${BASE}/api/agreements/${agreementId}/complete`,
           {},
           { headers: { Authorization: `Bearer ${token}` } }
         );

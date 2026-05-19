@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 export default function Register() {
   const [form, setForm] = useState({ email: "", password: "", role: "student" });
   const navigate = useNavigate();
@@ -12,7 +14,7 @@ export default function Register() {
     e.preventDefault();
     try {
       //await axios.post("http://localhost:5000/api/auth/register", form);
-      await axios.post("https://stag-io-backend.onrender.com/api/auth/register", form);
+      await axios.post(`${BASE}/api/auth/register`, form);
       alert("Registered successfully");
       navigate("/login");
     } catch (err) {
